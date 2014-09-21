@@ -1,0 +1,43 @@
+<h1>My ideas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Encripted Description</th>
+      <th>Picture</th>
+      <th>Super</th>
+      <th>Description Length</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ideas.each do |idea| %>
+      <tr>
+        <td><%= idea.id %></td>
+        <td><%= idea.name %></td>
+        <td><%= idea.description %></td>
+        <td><%= idea.encrypt_description %></td>
+        <td><%= image_tag(idea.picture_url, :width => 300) if idea.picture.present? %></td>
+        <td>super</td>
+        <td><%= idea.description.length %></td>
+        <td><%= idea.created_at.to_formatted_s(:short) %></td>
+        <td><%= idea.updated_at.to_formatted_s(:short) %></td>
+        <td><%= link_to 'Show', idea %></td>
+        <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
+        <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Idea', new_idea_path %>
